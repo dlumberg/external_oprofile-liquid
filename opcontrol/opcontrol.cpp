@@ -35,7 +35,7 @@
 #include "op_config.h"
 
 #define verbose(fmt...) if (verbose_print) printf(fmt)
-
+#define WITH_ARM_V7_A
 struct event_info {
     int id;
     int counters;
@@ -60,7 +60,6 @@ const char *default_event = "CPU_CLK_UNHALTED";
 #if defined(__arm__)
 #if !defined(WITH_ARM_V7_A)
 struct event_info event_info_armv6[] = {
-    #include "../events/arm/armv6/events.h"
 };
 
 #define MAX_EVENTS 3
@@ -68,7 +67,6 @@ int min_count[MAX_EVENTS] = {150000, 200000, 250000};
 
 #else
 struct event_info event_info_armv7[] = {
-    #include "../events/arm/armv7/events.h"
 };
 
 #define MAX_EVENTS 5
